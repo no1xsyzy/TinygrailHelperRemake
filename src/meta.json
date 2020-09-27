@@ -1,0 +1,9 @@
+{
+  "name": "TinyGrail Helper Remake",
+  "namespace": "inqb.ga",
+  "version": "2.4.9",
+  "description": "为小圣杯增加一些小功能,讨论/反馈：https://bgm.tv/group/topic/358129",
+  "author": "Liaune, Cedar, no1xsyzy(InQβ), Yinr",
+  "include": "/^https?://(bgm\\.tv|bangumi\\.tv|chii\\.in)/(user|character|rakuen\\/topiclist|rakuen\\/home|rakuen\\/topic\\/crt).*",
+  "grant": "GM_style"
+}

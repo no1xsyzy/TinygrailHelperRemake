@@ -1,0 +1,42 @@
+import metablock from 'rollup-plugin-userscript-metablock'
+import postcss from 'rollup-plugin-postcss'
+import path from 'path'
+
+const pkg = require( './package.json' );
+
+const metab = metablock( {
+  file: './src/meta.json',
+  override: {
+    name: pkg.name,
+    version: pkg.version,
+    description: pkg.description,
+    homepage: pkg.homepage,
+    author: pkg.author,
+  },
+} )
+
+export default [ {
+  input: 'src/main.js',
+  output: {
+    file: 'dist/TinygrailHelperRemake.user.js',
+    format: 'iife',
+  },
+  plugins: [
+    metab,
+    postcss( {
+      plugins: []
+    } ),
+  ],
+}, {
+  input: 'src/main.js',
+  output: {
+    file: 'dist/gadgets/script.js',
+    format: 'iife',
+  },
+  plugins: [
+    metab,
+    postcss( {
+      extract: path.resolve( 'dist/gadgets/style.css' )
+    } )
+  ],
+} ]

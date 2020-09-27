@@ -1,0 +1,78 @@
+ul.timelineTabs li a {
+  margin: 2px 0 0 0;
+  padding: 5px 10px 5px 10px;
+}
+
+img.cover {
+  background-color: transparent;
+}
+
+.assets .my_temple.item .card {
+  box-shadow: 3px 3px 5px #FFEB3B;
+  border: 1px solid #FFC107;
+}
+
+html[data-theme='dark'] .assets .my_temple.item .card {
+  box-shadow: 0px 0px 15px #FFEB3B;
+  border: 1px solid #FFC107;
+}
+
+.assets .my_temple.item .name a {
+  font-weight: bold;
+  color: #0084b4;
+}
+
+#grail .temple_list .item {
+  margin: 5px 5px 5px 0;
+  width: 107px;
+}
+
+.assets_box .item {
+  margin: 5px 5px 5px 0;
+  width: 90px;
+}
+
+#lastTemples .assets .item {
+  margin: 5px 5px 5px 0;
+  width: 107px;
+}
+
+.item .card {
+  width: 105px;
+  height: 140px;
+}
+
+.assets_box .item .card {
+  width: 90px;
+  height: 120px;
+}
+
+#grailBox .my_auction,
+#TB_window .my_auction {
+  color: #ffa7cc;
+  margin-right: 5px;
+}
+
+#grailBox .user_auction,
+#TB_window .user_auction {
+  color: #a7e3ff;
+  margin-right: 5px;
+}
+
+html[data-theme='dark'] #grailBox .title {
+  background-color: transparent;
+}
+
+#grailBox .trade_box button {
+  min-width: 50px;
+  padding: 0 9px;
+}
+
+#TB_window .text_button {
+  margin: 0 8px 0 0;
+  padding: 0;
+  width: fit-content;
+  height: fit-content;
+  min-width: fit-content;
+  color: #0084B4;
+}
