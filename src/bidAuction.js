@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { postData } from './api.js';
 
 export function bidAuction( chara ) {

@@ -1,3 +1,4 @@
+import $ from 'jquery'
 export function priceWarning() {
   let price = $( `.bid .price` ).val();
   let amount = $( `.bid .amount` ).val();

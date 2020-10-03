@@ -1,3 +1,4 @@
+import $ from 'jquery'
 export function listItemClicked() {
   let link = $( this ).find( 'a.avatar' ).attr( 'href' );
   if ( link ) {

@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { formatNumber } from './formats';
 import { closeDialog } from './closeDialog';
 import { loadUserAuctions } from './loadUserAuctions';

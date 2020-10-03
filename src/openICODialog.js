@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getFillICOList, setFillICOList } from "./storage/fillICOList";
 import { closeDialog } from './closeDialog';
 import { fullfillICO } from './ico/fullfill';

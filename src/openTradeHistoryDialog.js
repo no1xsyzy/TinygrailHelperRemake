@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getData } from './api.js';
 import { formatNumber, formatDate } from './formats';
 import { closeDialog } from './closeDialog';

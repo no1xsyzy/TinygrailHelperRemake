@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { openBuildDialog } from './openBuildDialog';
 import { getAutoTempleList, setAutoTempleList } from './storage/autoTempleList';
 

@@ -20,6 +20,9 @@ export default [ {
   output: {
     file: 'dist/TinygrailHelperRemake.user.js',
     format: 'iife',
+    globals: {
+      jquery: '$'
+    }
   },
   plugins: [
     metab,
@@ -27,11 +30,15 @@ export default [ {
       plugins: []
     } ),
   ],
+  external: [ 'jquery' ]
 }, {
   input: 'src/main.js',
   output: {
     file: 'dist/gadgets/script.js',
     format: 'iife',
+    globals: {
+      jquery: '$'
+    }
   },
   plugins: [
     metab,
@@ -39,4 +46,5 @@ export default [ {
       extract: path.resolve( 'dist/gadgets/style.css' )
     } )
   ],
+  external: [ 'jquery' ]
 } ]

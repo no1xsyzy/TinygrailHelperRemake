@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getData } from './api.js';
 import { getFollowList, setFollowList } from "./storage/followList";
 

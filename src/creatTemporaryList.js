@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { postData } from './api.js';
 import { getFollowList, setFollowList } from "./storage/followList";
 import { closeDialog } from './closeDialog';

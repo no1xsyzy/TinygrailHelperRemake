@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getFollowList, setFollowList } from "./storage/followList";
 import { listItemClicked } from './listItemClicked';
 import { renderBalanceLog } from './render/balanceLog';

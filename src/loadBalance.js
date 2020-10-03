@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getData } from './api.js';
 import { closeDialog } from './closeDialog';
 import { loadCharacterList } from './loadCharacterList';

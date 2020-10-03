@@ -1,3 +1,4 @@
+import $ from 'jquery'
 export function showHideGrailBox() {
   let settings = getSettings();
   let config = settings.hide_grail;

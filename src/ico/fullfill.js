@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getData, postData } from '../api.js';
 import { caculateICO } from './calculate';
 import { ICO_standard } from './standard';

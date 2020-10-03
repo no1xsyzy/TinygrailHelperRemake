@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getFillICOList } from "./storage/fillICOList";
 import { openICODialog } from './openICODialog';
 

@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { postData } from './api.js';
 import { getItemsSetting, setItemsSetting } from "./storage/itemsSetting";
 import { closeDialog } from './closeDialog';

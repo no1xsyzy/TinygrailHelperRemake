@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { menuItemClicked } from './menuItemClicked';
 import { openSettings } from './openSettings';
 import { cancelBids } from './cancelBids';

@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getFollowList, setFollowList } from "./storage/followList";
 import { getSettings } from "./storage/settings"
 

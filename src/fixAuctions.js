@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getData, postData } from './api.js';
 import { loadUserAuctions } from './loadUserAuctions';
 import { openAuctionDialog } from "./openAuctionDialog";

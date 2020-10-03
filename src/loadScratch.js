@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getData, postData } from './api.js';
 import { getItemsSetting } from "./storage/itemsSetting";
 import { loadCharacterList } from './loadCharacterList';

@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getData } from './api.js';
 import { getCharaInitPrice, setCharaInitPrice } from "./storage/charaInitPrice";
 import { sell_out } from "./sell_out";

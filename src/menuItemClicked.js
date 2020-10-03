@@ -1,3 +1,4 @@
+import $ from 'jquery'
 export function menuItemClicked( callback ) {
   $( '.timelineTabs a' ).removeClass( 'focus' );
   $( '.timelineTabs a' ).removeClass( 'top_focus' );

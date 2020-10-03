@@ -1,3 +1,4 @@
+import $ from 'jquery'
 const API = 'https://tinygrail.com/api/';
 
 export function getData( url ) {

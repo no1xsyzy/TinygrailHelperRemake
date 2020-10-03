@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { closeDialog } from './closeDialog';
 
 export function showGallery() {

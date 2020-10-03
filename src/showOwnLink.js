@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getFollowList } from "./storage/followList";
 
 export function showOwnLink() {

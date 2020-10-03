@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getSettings, setSettings } from "./storage/settings";
 import { closeDialog } from './closeDialog';
 

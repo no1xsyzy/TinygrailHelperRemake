@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { openTradeHistoryDialog } from "./openTradeHistoryDialog";
 
 export function showTradeHistory( chara ) {

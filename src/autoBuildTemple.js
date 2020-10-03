@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getData, postData } from './api.js';
 import { formatAskPrice } from './formats';
 import { remove_empty } from "./remove_empty";

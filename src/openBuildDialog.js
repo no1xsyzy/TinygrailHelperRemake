@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import { getAutoTempleList, setAutoTempleList } from "./storage/autoTempleList";
 import { closeDialog } from './closeDialog';
 import { autoBuildTemple } from './autoBuildTemple';
