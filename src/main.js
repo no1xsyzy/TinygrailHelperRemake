@@ -1,11 +1,5 @@
 import './style.css'
 
-import { getFillICOList } from "./storage/fillICOList"
-import { getAutoTempleList } from "./storage/autoTempleList"
-import { getCharaInitPrice } from "./storage/charaInitPrice"
-import { getSettings } from "./storage/settings"
-import { getFollowList } from "./storage/followList"
-
 import { launchObserver } from './launchObserver'
 import { autoFillTemple } from './autoFillTemple'
 import { autoTemple } from './autoTemple'
@@ -20,16 +14,6 @@ import { add_chara_info } from './add_chara_info'
 import { add_ico_info } from './add_ico_info'
 
 //=======================================================================================================//
-//关注列表
-export let followList = getFollowList();
-//设置
-export let settings = getSettings();
-//发行价缓存
-export let chara_initPrice = getCharaInitPrice();
-//自动建塔
-export let autoTempleList = getAutoTempleList();
-//ico自动补款
-export let fillicoList = getFillICOList();
 
 setInterval( autoFillTemple, 60 * 60 * 1000 );
 setInterval( autoTemple, 60 * 60 * 1000 );
