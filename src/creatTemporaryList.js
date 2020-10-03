@@ -8,9 +8,7 @@ import { autoJoinICO } from "./autoJoinICO";
 import { joinAuctions } from "./joinAuctions";
 import { loadFollowAuction } from "./loadFollowAuction";
 
-export function creatTemporaryList( page ) {
-  closeDialog();
-  let dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
+const dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
 <div id="TB_window" class="dialog" style="display:block;max-width:640px;min-width:400px;">
 <div class="bibeBox" style="padding:10px">
 <label>在超展开左边创建角色列表 请输入角色url或id，如 https://bgm.tv/character/29282 或 29282，一行一个</label>
@@ -25,17 +23,21 @@ export function creatTemporaryList( page ) {
 </div>
 </div>`;
 
-  function get_charas_list() {
-    let charas_list = [];
-    let charas = $( '.bibeBox textarea' ).val().split( '\n' );
-    for ( let i = 0; i < charas.length; i++ ) {
-      try {
-        let charaId = charas[ i ].match( /(character\/|crt\/)?(\d+)/ )[ 2 ];
-        charas_list.push( charaId );
-      } catch ( e ) {};
-    }
-    set_charas_list( charas_list );
+function get_charas_list() {
+  let charas_list = [];
+  let charas = $( '.bibeBox textarea' ).val().split( '\n' );
+  for ( let i = 0; i < charas.length; i++ ) {
+    try {
+      let charaId = charas[ i ].match( /(character\/|crt\/)?(\d+)/ )[ 2 ];
+      charas_list.push( charaId );
+    } catch ( e ) {};
   }
+  set_charas_list( charas_list );
+}
+
+export function creatTemporaryList( page ) {
+  closeDialog();
+
   $( 'body' ).append( dialog );
   $( '#TB_closeWindowButton' ).on( 'click', closeDialog );
   $( '#TB_overlay' ).on( 'click', closeDialog );
