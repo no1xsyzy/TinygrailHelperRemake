@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import { getFollowList } from "./storage/followList";
+import { getSettings } from './storage/settings'
 
 export function showOwnLink() {
   let followList = getFollowList();

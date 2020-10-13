@@ -2,6 +2,7 @@ import $ from 'jquery'
 import { getData } from './api.js';
 import { formatNumber, formatDate } from './formats';
 import { mergeorderList } from './mergeorderList';
+import { getSettings } from './storage/settings';
 
 export function mergeorderListHistory( charaId ) {
   let settings = getSettings();

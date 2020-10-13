@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import { closeDialog } from './closeDialog';
+import { getSettings } from './storage/settings';
 
 export function showGallery() {
   let settings = getSettings();
