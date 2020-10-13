@@ -22,7 +22,7 @@ export function getData( url ) {
 
 export function postData( url, data ) {
   let d = JSON.stringify( data );
-  if ( !url.startsWith( 'http' ) ) url = api + url;
+  if ( !url.startsWith( 'http' ) ) url = API + url;
   return new Promise( ( resovle, reject ) => {
     $.ajax( {
       url: url,
