@@ -7,7 +7,6 @@ const pkg = require( './package.json' );
 const metab = metablock( {
   file: './src/meta.json',
   override: {
-    name: pkg.name,
     version: pkg.version,
     description: pkg.description,
     homepage: pkg.homepage,

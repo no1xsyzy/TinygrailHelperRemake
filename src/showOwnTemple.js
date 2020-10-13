@@ -22,7 +22,7 @@ export function showOwnTemple() {
       break;
     }
   }
-  $( '#expandButton' ).once( 'click', () => {
+  $( '#expandButton' ).one( 'click', () => {
     showOwnTemple();
   } );
 }

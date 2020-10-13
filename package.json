@@ -1,6 +1,6 @@
 {
   "name": "tinygrailhelperremake",
-  "version": "2.4.9",
+  "version": "2.4.10",
   "description": "为小圣杯增加一些小功能",
   "main": "src/main.js",
   "scripts": {
