@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { setAutoTempleList } from "./storage/autoTempleList";
+import { getAutoTempleList, setAutoTempleList } from "./storage/autoTempleList";
 
 export function removeBuildTemple( charaId ) {
   let autoTempleList = getAutoTempleList();
