@@ -9,9 +9,9 @@ export function changeTempleCover( charaId ) {
     let me = followList.user;
     let temple = $( e.currentTarget ).parent().data( 'temple' );
     let user = temple.Name;
-    if ( user == me )
-      setChaosCube( temple );
-    else
+    if ( user == me ) {
+      // setChaosCube( temple );
+    } else
       addButton( temple, user );
   } );
 
