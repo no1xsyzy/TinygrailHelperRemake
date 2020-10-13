@@ -12,6 +12,7 @@ import { showHideGrailBox } from './showHideGrailBox'
 import { showTopWeek } from './showTopWeek'
 import { add_chara_info } from './add_chara_info'
 import { add_ico_info } from './add_ico_info'
+import { getSettings } from './storage/settings'
 
 //=======================================================================================================//
 
@@ -56,7 +57,7 @@ if ( location.pathname.startsWith( '/rakuen/topic/crt' ) || location.pathname.st
 // rakuen homepage
 else if ( location.pathname.startsWith( '/rakuen/home' ) ) {
   //周六未领取股息则自动领取
-  if ( settings.get_bonus == 'on' ) getShareBonus();
+  if ( getSettings().get_bonus == 'on' ) getShareBonus();
   launchObserver( {
     parentNode: document.body,
     selector: '#topWeek',
