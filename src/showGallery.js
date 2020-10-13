@@ -40,7 +40,6 @@ export function showGallery() {
     setInterval( function() {
       $( `.item .card` ).on( 'click', ( e ) => {
         index = $( `.item .card` ).index( e.currentTarget );
-        gallery_mode = true;
       } );
     }, 1000 );
   }
