@@ -1,30 +1,30 @@
 import $ from 'jquery'
-const API = 'https://tinygrail.com/api/';
+const API = 'https://tinygrail.com/api/'
 
-export function getData( url ) {
-  if ( !url.startsWith( 'http' ) ) url = API + url;
-  return new Promise( ( resovle, reject ) => {
-    $.ajax( {
+export function getData (url) {
+  if (!url.startsWith('http')) url = API + url
+  return new Promise((resolve, reject) => {
+    $.ajax({
       url: url,
       type: 'GET',
       xhrFields: {
         withCredentials: true
       },
       success: res => {
-        resovle( res )
+        resolve(res)
       },
       error: err => {
-        reject( err )
+        reject(err)
       }
-    } );
-  } );
+    })
+  })
 }
 
-export function postData( url, data ) {
-  let d = JSON.stringify( data );
-  if ( !url.startsWith( 'http' ) ) url = API + url;
-  return new Promise( ( resovle, reject ) => {
-    $.ajax( {
+export function postData (url, data) {
+  const d = JSON.stringify(data)
+  if (!url.startsWith('http')) url = API + url
+  return new Promise((resolve, reject) => {
+    $.ajax({
       url: url,
       type: 'POST',
       contentType: 'application/json',
@@ -33,11 +33,11 @@ export function postData( url, data ) {
         withCredentials: true
       },
       success: res => {
-        resovle( res )
+        resolve(res)
       },
       error: err => {
-        reject( err )
+        reject(err)
       }
-    } );
-  } );
+    })
+  })
 }

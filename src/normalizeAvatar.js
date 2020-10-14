@@ -1,10 +1,8 @@
-export function normalizeAvatar( avatar ) {
-  if ( !avatar )
-    return '//lain.bgm.tv/pic/user/l/icon.jpg';
+export function normalizeAvatar (avatar) {
+  if (!avatar) { return '//lain.bgm.tv/pic/user/l/icon.jpg' }
 
-  if ( avatar.startsWith( 'https://tinygrail.oss-cn-hangzhou.aliyuncs.com/' ) )
-    return avatar + "!w120";
+  if (avatar.startsWith('https://tinygrail.oss-cn-hangzhou.aliyuncs.com/')) { return avatar + '!w120' }
 
-  let a = avatar.replace( "http://", "//" );
-  return a;
+  const a = avatar.replace('http://', '//')
+  return a
 }

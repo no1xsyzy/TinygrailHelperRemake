@@ -1,11 +1,11 @@
 import $ from 'jquery'
-import { getData } from './api.js';
-import { closeDialog } from './closeDialog';
-import { loadCharacterList } from './loadCharacterList';
+import { getData } from './api.js'
+import { closeDialog } from './closeDialog'
+import { loadCharacterList } from './loadCharacterList'
 
-export function loadBalance() {
-  closeDialog();
-  let dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
+export function loadBalance () {
+  closeDialog()
+  const dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
 <div id="TB_window" class="dialog" style="display:block;max-width:640px;min-width:400px;">
 <table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 <tr><td>类型：<select id="balanceType" style="width:100px">
@@ -33,41 +33,39 @@ export function loadBalance() {
 </tbody></table>
 <a id="TB_closeWindowButton" title="Close">X关闭</a>
 </div>
-</div>`;
-  $( 'body' ).append( dialog );
-  $( '#TB_closeWindowButton' ).on( 'click', closeDialog );
-  $( '#TB_overlay' ).on( 'click', closeDialog );
-  $( '#submit_search' ).on( 'click', () => {
-    let Type = $( '#balanceType' ).val();
-    let page = $( '#page' ).val();
-    let amount = $( '#amount' ).val();
-    let Logs = [];
-    getData( `chara/user/balance/${page}/${amount}`, null ).then( ( d ) => {
-      closeDialog();
-      if ( d.State == 0 ) {
-        for ( let i = 0; i < d.Value.Items.length; i++ ) {
-          if ( d.Value.Items[ i ].Type == Type || Type == 0 )
-            Logs.push( d.Value.Items[ i ] );
+</div>`
+  $('body').append(dialog)
+  $('#TB_closeWindowButton').on('click', closeDialog)
+  $('#TB_overlay').on('click', closeDialog)
+  $('#submit_search').on('click', () => {
+    const Type = $('#balanceType').val()
+    const page = $('#page').val()
+    const amount = $('#amount').val()
+    const Logs = []
+    getData(`chara/user/balance/${page}/${amount}`, null).then((d) => {
+      closeDialog()
+      if (d.State === 0) {
+        for (let i = 0; i < d.Value.Items.length; i++) {
+          if (d.Value.Items[i].Type === Type || Type === 0) { Logs.push(d.Value.Items[i]) }
         }
-        loadCharacterList( Logs, 1, 1, loadBalance, 'balance', false );
-        $( '#eden_tpc_list ul li' ).on( 'click', function( e ) {
-          var id = $( e.target ).data( 'id' );
-          if ( id == null ) {
-            var result = $( e.target ).find( 'small.time' ).text().match( /#(\d+)/ );
-            if ( result && result.length > 0 )
-              id = result[ 1 ];
+        loadCharacterList(Logs, 1, 1, loadBalance, 'balance', false)
+        $('#eden_tpc_list ul li').on('click', function (e) {
+          var id = $(e.target).data('id')
+          if (id == null) {
+            var result = $(e.target).find('small.time').text().match(/#(\d+)/)
+            if (result && result.length > 0) { id = result[1] }
           }
 
-          if ( id != null && id.length > 0 ) {
-            if ( parent.window.innerWidth < 1200 ) {
-              $( parent.document.body ).find( "#split #listFrameWrapper" ).animate( {
+          if (id != null && id.length > 0) {
+            if (parent.window.innerWidth < 1200) {
+              $(parent.document.body).find('#split #listFrameWrapper').animate({
                 left: '-450px'
-              } );
+              })
             }
-            window.open( `/rakuen/topic/crt/${id}?trade=true`, 'right' );
+            window.open(`/rakuen/topic/crt/${id}?trade=true`, 'right')
           }
-        } );
+        })
       }
-    } );
-  } );
+    })
+  })
 }

@@ -1,3 +1,3 @@
-import { defineStorage } from "./base";
+import { defineStorage } from './base'
 
-export let [ getAutoTempleList, setAutoTempleList ] = defineStorage( 'TinyGrail_autoTempleList', [] );
+export const [getAutoTempleList, setAutoTempleList] = defineStorage('TinyGrail_autoTempleList', [])

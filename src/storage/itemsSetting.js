@@ -1,3 +1,3 @@
-import { defineStorage } from "./base";
+import { defineStorage } from './base'
 
-export let [ getItemsSetting, setItemsSetting ] = defineStorage( 'TinyGrail_ItemsSetting', {} );
+export const [getItemsSetting, setItemsSetting] = defineStorage('TinyGrail_ItemsSetting', {})

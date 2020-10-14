@@ -1,11 +1,11 @@
 import $ from 'jquery'
-import { getSettings, setSettings } from "./storage/settings";
-import { closeDialog } from './closeDialog';
+import { getSettings, setSettings } from './storage/settings'
+import { closeDialog } from './closeDialog'
 
-export function openSettings() {
-  closeDialog();
-  let settings = getSettings();
-  let dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
+export function openSettings () {
+  closeDialog()
+  const settings = getSettings()
+  const dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
 <div id="TB_window" class="dialog" style="display:block;max-width:640px;min-width:400px;">
 <table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 <tbody><tr><td valign="top" width="50%">主页显示/隐藏小圣杯</td><td valign="top">
@@ -26,29 +26,29 @@ export function openSettings() {
 </tbody></table>
 <a id="TB_closeWindowButton" title="Close">X关闭</a>
 </div>
-</div>`;
-  $( 'body' ).append( dialog );
-  $( '#TB_closeWindowButton' ).on( 'click', closeDialog );
-  $( '#TB_overlay' ).on( 'click', closeDialog );
-  $( '#set1' ).val( settings.hide_grail );
-  $( '#set2' ).val( settings.pre_temple );
-  $( '#set3' ).val( settings.auction_num );
-  $( '#set4' ).val( settings.merge_order );
-  $( '#set5' ).val( settings.get_bonus );
-  $( '#set6' ).val( settings.gallery );
-  $( '#set7' ).val( settings.auto_fill_temple );
-  $( '#submit_setting' ).on( 'click', () => {
-    settings.hide_grail = $( '#set1' ).val();
-    settings.pre_temple = $( '#set2' ).val();
-    settings.auction_num = $( '#set3' ).val();
-    settings.merge_order = $( '#set4' ).val();
-    settings.get_bonus = $( '#set5' ).val();
-    settings.gallery = $( '#set6' ).val();
-    settings.auto_fill_temple = $( '#set7' ).val();
-    setSettings( settings );
-    $( '#submit_setting' ).val( '已保存' );
-    setTimeout( () => {
-      closeDialog();
-    }, 500 );
-  } );
+</div>`
+  $('body').append(dialog)
+  $('#TB_closeWindowButton').on('click', closeDialog)
+  $('#TB_overlay').on('click', closeDialog)
+  $('#set1').val(settings.hide_grail)
+  $('#set2').val(settings.pre_temple)
+  $('#set3').val(settings.auction_num)
+  $('#set4').val(settings.merge_order)
+  $('#set5').val(settings.get_bonus)
+  $('#set6').val(settings.gallery)
+  $('#set7').val(settings.auto_fill_temple)
+  $('#submit_setting').on('click', () => {
+    settings.hide_grail = $('#set1').val()
+    settings.pre_temple = $('#set2').val()
+    settings.auction_num = $('#set3').val()
+    settings.merge_order = $('#set4').val()
+    settings.get_bonus = $('#set5').val()
+    settings.gallery = $('#set6').val()
+    settings.auto_fill_temple = $('#set7').val()
+    setSettings(settings)
+    $('#submit_setting').val('已保存')
+    setTimeout(() => {
+      closeDialog()
+    }, 500)
+  })
 }

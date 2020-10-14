@@ -10,106 +10,100 @@ import { loadHelperMenu } from './loadHelperMenu'
 import { showGallery } from './showGallery'
 import { showHideGrailBox } from './showHideGrailBox'
 import { showTopWeek } from './showTopWeek'
-import { add_chara_info } from './add_chara_info'
-import { add_ico_info } from './add_ico_info'
+import { addCharaInfo } from './add_chara_info'
+import { addIcoInfo } from './add_ico_info'
 import { getSettings } from './storage/settings'
 
-//=======================================================================================================//
+//= ======================================================================================================//
 
-setInterval( autoFillTemple, 60 * 60 * 1000 );
-setInterval( autoTemple, 60 * 60 * 1000 );
-setInterval( fillICO, 30 * 1000 );
+setInterval(autoFillTemple, 60 * 60 * 1000)
+setInterval(autoTemple, 60 * 60 * 1000)
+setInterval(fillICO, 30 * 1000)
 
 // character page
-if ( location.pathname.startsWith( '/rakuen/topic/crt' ) || location.pathname.startsWith( '/character' ) ) {
-  let parentNode = document.getElementById( 'subject_info' ) || document.getElementById( 'columnCrtB' );
+if (location.pathname.startsWith('/rakuen/topic/crt') || location.pathname.startsWith('/character')) {
+  const parentNode = document.getElementById('subject_info') || document.getElementById('columnCrtB')
   // charater trade info
-  let chara_fetched = false;
-  launchObserver( {
+  let charaFetched = false
+  launchObserver({
     parentNode: parentNode,
     selector: '#grailBox .assets_box',
     failCallback: () => {
-      chara_fetched = false
+      charaFetched = false
     },
     successCallback: () => {
-      if ( chara_fetched ) return;
-      chara_fetched = true;
-      add_chara_info();
+      if (charaFetched) return
+      charaFetched = true
+      addCharaInfo()
     },
-    stopWhenSuccess: false,
-  } );
+    stopWhenSuccess: false
+  })
   // charater ico info
-  let ico_fetched = false;
-  launchObserver( {
+  let icoFetched = false
+  launchObserver({
     parentNode: parentNode,
     selector: '#grailBox .trade .money',
     failCallback: () => {
-      ico_fetched = false
+      icoFetched = false
     },
     successCallback: () => {
-      if ( ico_fetched ) return;
-      ico_fetched = true;
-      add_ico_info();
+      if (icoFetched) return
+      icoFetched = true
+      addIcoInfo()
     },
-    stopWhenSuccess: false,
-  } );
-}
-// rakuen homepage
-else if ( location.pathname.startsWith( '/rakuen/home' ) ) {
-  //周六未领取股息则自动领取
-  if ( getSettings().get_bonus == 'on' ) getShareBonus();
-  launchObserver( {
+    stopWhenSuccess: false
+  })
+} else if (location.pathname.startsWith('/rakuen/home')) { // rakuen homepage
+  // 周六未领取股息则自动领取
+  if (getSettings().get_bonus === 'on') getShareBonus()
+  launchObserver({
     parentNode: document.body,
     selector: '#topWeek',
     successCallback: () => {
-      hideBonusButton(); //隐藏签到
-      showTopWeek(); //显示萌王榜排名数值
-      showGallery(); //显示画廊
-    },
-  } );
-  let chara_fetched = false;
-  launchObserver( {
+      hideBonusButton() // 隐藏签到
+      showTopWeek() // 显示萌王榜排名数值
+      showGallery() // 显示画廊
+    }
+  })
+  let charaFetched = false
+  launchObserver({
     parentNode: document.body,
     selector: '#grailBox .assets_box',
     failCallback: () => {
-      chara_fetched = false
+      charaFetched = false
     },
     successCallback: () => {
-      if ( chara_fetched ) return;
-      chara_fetched = true;
-      add_chara_info();
+      if (charaFetched) return
+      charaFetched = true
+      addCharaInfo()
     },
-    stopWhenSuccess: false,
-  } );
-}
-// menu page
-else if ( location.pathname.startsWith( '/rakuen/topiclist' ) ) {
-  setTimeout( function() {
+    stopWhenSuccess: false
+  })
+} else if (location.pathname.startsWith('/rakuen/topiclist')) { // menu page
+  setTimeout(function () {
     loadHelperMenu()
-  }, 500 );
-}
-// user homepage
-else if ( location.pathname.startsWith( '/user' ) ) {
-  launchObserver( {
+  }, 500)
+} else if (location.pathname.startsWith('/user')) { // user homepage
+  launchObserver({
     parentNode: document.body,
     selector: '#grail',
     successCallback: () => {
-      showHideGrailBox();
-      showGallery();
-    },
-  } );
-  let chara_fetched = false;
-  launchObserver( {
+      showHideGrailBox()
+      showGallery()
+    }
+  })
+  let charaFetched = false
+  launchObserver({
     parentNode: document.body,
     selector: '#grailBox .assets_box',
     failCallback: () => {
-      chara_fetched = false
+      charaFetched = false
     },
     successCallback: () => {
-      if ( chara_fetched ) return;
-      chara_fetched = true;
-      add_chara_info();
+      if (charaFetched) return
+      charaFetched = true
+      addCharaInfo()
     },
-    stopWhenSuccess: false,
-  } );
+    stopWhenSuccess: false
+  })
 }

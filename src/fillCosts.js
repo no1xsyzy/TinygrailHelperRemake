@@ -1,13 +1,13 @@
 import $ from 'jquery'
-import { postData } from './api.js';
-import { getItemsSetting, setItemsSetting } from "./storage/itemsSetting";
-import { closeDialog } from './closeDialog';
+import { postData } from './api.js'
+import { getItemsSetting, setItemsSetting } from './storage/itemsSetting'
+import { closeDialog } from './closeDialog'
 
-export function fillCosts( id, lv, cost ) {
-  closeDialog();
-  let ItemsSetting = getItemsSetting();
-  let supplyId = ItemsSetting.stardust ? ItemsSetting.stardust[ lv ] : '';
-  let dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
+export function fillCosts (id, lv, cost) {
+  closeDialog()
+  const ItemsSetting = getItemsSetting()
+  const supplyId = ItemsSetting.stardust ? ItemsSetting.stardust[lv] : ''
+  const dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
 <div id="TB_window" class="dialog" style="display:block;max-width:640px;min-width:400px;">
 <div class="title" title="用一个角色的活股或固定资产，给另一个角色的圣殿消耗进行补充，目标人物的等级要小于或等于发动攻击圣殿的人物等级">星光碎片</div>
 <div class="desc" style="display:none"></div>
@@ -20,33 +20,28 @@ export function fillCosts( id, lv, cost ) {
 </tbody></table>
 <a id="TB_closeWindowButton" title="Close">X关闭</a>
 </div>
-</div>`;
+</div>`
 
-  $( 'body' ).append( dialog );
-  $( '#TB_closeWindowButton' ).on( 'click', closeDialog );
-  $( '#TB_overlay' ).on( 'click', closeDialog );
-  if ( !supplyId ) {
-    $( '#TB_window .desc' ).text( `当前等级的能源角色id未设定，补充过一次之后会记住此等级的能源角色id` );
-    $( '#TB_window .desc' ).show();
+  $('body').append(dialog)
+  $('#TB_closeWindowButton').on('click', closeDialog)
+  $('#TB_overlay').on('click', closeDialog)
+  if (!supplyId) {
+    $('#TB_window .desc').text('当前等级的能源角色id未设定，补充过一次之后会记住此等级的能源角色id')
+    $('#TB_window .desc').show()
   }
-  $( '#submit_stardust' ).on( 'click', () => {
-    let supplyId = $( '#supplyId' ).val();
-    let toSupplyId = $( '#toSupplyId' ).val();
-    let isTemple = $( '#isTemple' ).val();
-    let amount = $( '#amount' ).val();
-    if ( supplyId ) {
-      if ( !ItemsSetting.stardust )
-        ItemsSetting.stardust = {};
-      ItemsSetting.stardust[ lv ] = supplyId;
-      setItemsSetting( ItemsSetting );
-      postData( `magic/stardust/${supplyId}/${toSupplyId}/${amount}/${isTemple}`, null ).then( ( d ) => {
-        closeDialog();
-        if ( d.State == 0 )
-          alert( d.Value );
-        else
-          alert( d.Message );
-      } );
-    } else
-      alert( '角色id不能为空' );
-  } );
+  $('#submit_stardust').on('click', () => {
+    const supplyId = $('#supplyId').val()
+    const toSupplyId = $('#toSupplyId').val()
+    const isTemple = $('#isTemple').val()
+    const amount = $('#amount').val()
+    if (supplyId) {
+      if (!ItemsSetting.stardust) { ItemsSetting.stardust = {} }
+      ItemsSetting.stardust[lv] = supplyId
+      setItemsSetting(ItemsSetting)
+      postData(`magic/stardust/${supplyId}/${toSupplyId}/${amount}/${isTemple}`, null).then((d) => {
+        closeDialog()
+        if (d.State === 0) { alert(d.Value) } else { alert(d.Message) }
+      })
+    } else { alert('角色id不能为空') }
+  })
 }

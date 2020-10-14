@@ -1,3 +1,3 @@
-import { defineStorage } from "./base";
+import { defineStorage } from './base'
 
-export let [ getFillICOList, setFillICOList ] = defineStorage( 'TinyGrail_fillicoList', [] );
+export const [getFillICOList, setFillICOList] = defineStorage('TinyGrail_fillicoList', [])

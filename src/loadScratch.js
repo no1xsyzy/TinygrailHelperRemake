@@ -1,74 +1,74 @@
 import $ from 'jquery'
-import { getData, postData } from './api.js';
-import { getItemsSetting } from "./storage/itemsSetting";
-import { loadCharacterList } from './loadCharacterList';
+import { getData, postData } from './api.js'
+import { getItemsSetting } from './storage/itemsSetting'
+import { loadCharacterList } from './loadCharacterList'
 
-export function loadScratch() {
-  let ItemsSetting = getItemsSetting();
-  $( '#eden_tpc_list ul' ).html( '' );
-  $( '#eden_tpc_list ul' ).append( `<li class="line_odd item_list" style="text-align: center;">[刮刮乐]</li>` );
-  let scratch_results = [],
-    scratch_ids = [],
-    chaosCube_results = [],
-    chaosCube_ids = [];
-  scratch();
+export function loadScratch () {
+  const ItemsSetting = getItemsSetting()
+  $('#eden_tpc_list ul').html('')
+  $('#eden_tpc_list ul').append('<li class="line_odd item_list" style="text-align: center;">[刮刮乐]</li>')
+  const scratchResults = []
+  const scratchIds = []
+  const chaosCubeResults = []
+  const chaosCubeIds = []
+  scratch()
 
-  function scratch() {
-    getData( 'event/scratch/bonus2' ).then( ( d ) => {
-      if ( d.State == 0 ) {
-        for ( let i = 0; i < d.Value.length; i++ ) {
-          scratch_results.push( d.Value[ i ] );
-          scratch_ids.push( d.Value[ i ].Id );
+  function scratch () {
+    getData('event/scratch/bonus2').then((d) => {
+      if (d.State === 0) {
+        for (let i = 0; i < d.Value.length; i++) {
+          scratchResults.push(d.Value[i])
+          scratchIds.push(d.Value[i].Id)
         }
-        if ( !d.Value.length ) {
-          scratch_results.push( d.Value );
-          scratch_ids.push( d.Value.Id );
+        if (!d.Value.length) {
+          scratchResults.push(d.Value)
+          scratchIds.push(d.Value.Id)
         }
-        scratch();
+        scratch()
       } else {
-        postData( 'chara/list', scratch_ids ).then( ( d ) => {
-          for ( let i = 0; i < d.Value.length; i++ ) {
-            d.Value[ i ].Sacrifices = scratch_results[ i ].Amount;
-            d.Value[ i ].Current = scratch_results[ i ].SellPrice;
+        postData('chara/list', scratchIds).then((d) => {
+          for (let i = 0; i < d.Value.length; i++) {
+            d.Value[i].Sacrifices = scratchResults[i].Amount
+            d.Value[i].Current = scratchResults[i].SellPrice
           }
-          loadCharacterList( d.Value, 2, 2, loadScratch, 'chara', false );
-          $( '#eden_tpc_list ul' ).append( `<li class="line_odd item_list" style="text-align: center;">[混沌魔方]</li>` );
-          chaosCube();
-        } );
+          loadCharacterList(d.Value, 2, 2, loadScratch, 'chara', false)
+          $('#eden_tpc_list ul').append('<li class="line_odd item_list" style="text-align: center;">[混沌魔方]</li>')
+          chaosCube()
+        })
       }
-    } );
+    })
   }
 
-  function chaosCube() {
-    let templeId = ItemsSetting.chaosCube;
-    if ( templeId ) {
-      postData( `magic/chaos/${templeId}`, null ).then( ( d ) => {
-        console.log( d );
-        if ( d.State == 0 ) {
-          for ( let i = 0; i < d.Value.length; i++ ) {
-            chaosCube_results.push( d.Value[ i ] );
-            chaosCube_ids.push( d.Value[ i ].Id );
+  function chaosCube () {
+    const templeId = ItemsSetting.chaosCube
+    if (templeId) {
+      postData(`magic/chaos/${templeId}`, null).then((d) => {
+        console.log(d)
+        if (d.State === 0) {
+          for (let i = 0; i < d.Value.length; i++) {
+            chaosCubeResults.push(d.Value[i])
+            chaosCubeIds.push(d.Value[i].Id)
           }
-          if ( !d.Value.length ) {
-            chaosCube_results.push( d.Value );
-            chaosCube_ids.push( d.Value.Id );
+          if (!d.Value.length) {
+            chaosCubeResults.push(d.Value)
+            chaosCubeIds.push(d.Value.Id)
           }
-          chaosCube();
+          chaosCube()
         } else {
-          if ( d.Message != '今日已超过使用次数限制或资产不足。' ) {
-            alert( d.Message );
-            chaosCube();
-          } else
-            postData( 'chara/list', chaosCube_ids ).then( ( d ) => {
-              for ( let i = 0; i < d.Value.length; i++ ) {
-                d.Value[ i ].Sacrifices = chaosCube_results[ i ].Amount;
-                d.Value[ i ].Current = chaosCube_results[ i ].SellPrice;
+          if (d.Message !== '今日已超过使用次数限制或资产不足。') {
+            alert(d.Message)
+            chaosCube()
+          } else {
+            postData('chara/list', chaosCubeIds).then((d) => {
+              for (let i = 0; i < d.Value.length; i++) {
+                d.Value[i].Sacrifices = chaosCubeResults[i].Amount
+                d.Value[i].Current = chaosCubeResults[i].SellPrice
               }
-              loadCharacterList( d.Value, 2, 2, loadScratch, 'chara', false );
-            } );
+              loadCharacterList(d.Value, 2, 2, loadScratch, 'chara', false)
+            })
+          }
         }
-      } );
-    } else
-      alert( '未设置施放混沌魔方的圣殿，请先在角色圣殿施放一次混沌魔方即可完成预设' );
+      })
+    } else { alert('未设置施放混沌魔方的圣殿，请先在角色圣殿施放一次混沌魔方即可完成预设') }
   }
 }

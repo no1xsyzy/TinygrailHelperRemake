@@ -1,13 +1,13 @@
 import $ from 'jquery'
-import { postData } from './api.js';
-import { getFollowList, setFollowList } from "./storage/followList";
-import { closeDialog } from './closeDialog';
-import { loadFollowChara } from './loadFollowChara';
-import { loadTemperaryList } from './loadTemperaryList';
-import { charas_list, set_charas_list } from './charas_list';
-import { autoJoinICO } from "./autoJoinICO";
-import { joinAuctions } from "./joinAuctions";
-import { loadFollowAuction } from "./loadFollowAuction";
+import { postData } from './api.js'
+import { getFollowList, setFollowList } from './storage/followList'
+import { closeDialog } from './closeDialog'
+import { loadFollowChara } from './loadFollowChara'
+import { loadTemperaryList } from './loadTemperaryList'
+import { charasList, setCharasList } from './charasList'
+import { autoJoinICO } from './autoJoinICO'
+import { joinAuctions } from './joinAuctions'
+import { loadFollowAuction } from './loadFollowAuction'
 
 const dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div>
 <div id="TB_window" class="dialog" style="display:block;max-width:640px;min-width:400px;">
@@ -22,79 +22,79 @@ const dialog = `<div id="TB_overlay" class="TB_overlayBG TB_overlayActive"></div
 </div>
 <a id="TB_closeWindowButton" title="Close">X关闭</a>
 </div>
-</div>`;
+</div>`
 
-function get_charas_list() {
-  let charas_list = [];
-  let charas = $( '.bibeBox textarea' ).val().split( '\n' );
-  for ( let i = 0; i < charas.length; i++ ) {
+function getCharasList () {
+  const charasList = []
+  const charas = $('.bibeBox textarea').val().split('\n')
+  for (let i = 0; i < charas.length; i++) {
     try {
-      let charaId = charas[ i ].match( /(character\/|crt\/)?(\d+)/ )[ 2 ];
-      charas_list.push( charaId );
-    } catch ( e ) {};
+      const charaId = charas[i].match(/(character\/|crt\/)?(\d+)/)[2]
+      charasList.push(charaId)
+    } catch (e) {};
   }
-  set_charas_list( charas_list );
+  setCharasList(charasList)
 }
 
-export function creatTemporaryList( page ) {
-  closeDialog();
+export function creatTemporaryList (page) {
+  closeDialog()
 
-  $( 'body' ).append( dialog );
-  $( '#TB_closeWindowButton' ).on( 'click', closeDialog );
-  $( '#TB_overlay' ).on( 'click', closeDialog );
-  $( '#submit_list' ).on( 'click', () => {
-    get_charas_list();
-    loadTemperaryList( 1 );
-    closeDialog();
-  } );
-  $( '#add_follow' ).on( 'click', () => {
-    let charas_list = get_charas_list();
-    for ( let i = 0; i < charas_list.length; i++ ) {
-      let followList = getFollowList();
-      let charaId = charas_list[ i ].toString();
-      if ( followList.charas.includes( charaId ) ) {
-        followList.charas.splice( followList.charas.indexOf( charaId ), 1 );
-        followList.charas.unshift( charaId );
+  $('body').append(dialog)
+  $('#TB_closeWindowButton').on('click', closeDialog)
+  $('#TB_overlay').on('click', closeDialog)
+  $('#submit_list').on('click', () => {
+    getCharasList()
+    loadTemperaryList(1)
+    closeDialog()
+  })
+  $('#add_follow').on('click', () => {
+    const charasList = getCharasList()
+    for (let i = 0; i < charasList.length; i++) {
+      const followList = getFollowList()
+      const charaId = charasList[i].toString()
+      if (followList.charas.includes(charaId)) {
+        followList.charas.splice(followList.charas.indexOf(charaId), 1)
+        followList.charas.unshift(charaId)
       } else {
-        followList.charas.unshift( charaId );
+        followList.charas.unshift(charaId)
       }
-      setFollowList( followList );
+      setFollowList(followList)
     }
-    loadFollowChara( 1 );
-    closeDialog();
-  } );
+    loadFollowChara(1)
+    closeDialog()
+  })
 
-  $( '#add_auction' ).on( 'click', () => {
-    get_charas_list();
-    for ( let i = 0; i < charas_list.length; i++ ) {
-      let followList = getFollowList();
-      let charaId = charas_list[ i ].toString();
-      if ( followList.auctions.includes( charaId ) ) {
-        followList.auctions.splice( followList.auctions.indexOf( charaId ), 1 );
-        followList.auctions.unshift( charaId );
+  $('#add_auction').on('click', () => {
+    getCharasList()
+    for (let i = 0; i < charasList.length; i++) {
+      const followList = getFollowList()
+      const charaId = charasList[i].toString()
+      if (followList.auctions.includes(charaId)) {
+        followList.auctions.splice(followList.auctions.indexOf(charaId), 1)
+        followList.auctions.unshift(charaId)
       } else {
-        followList.auctions.unshift( charaId );
+        followList.auctions.unshift(charaId)
       }
-      setFollowList( followList );
+      setFollowList(followList)
     }
-    loadFollowAuction( 1 );
-    closeDialog();
-  } );
+    loadFollowAuction(1)
+    closeDialog()
+  })
 
-  $( '#join_auction' ).on( 'click', () => {
-    get_charas_list();
-    $( '#eden_tpc_list ul' ).html( '' );
-    loadTemperaryList( 1 );
-    joinAuctions( charas_list );
-    closeDialog();
-  } );
+  $('#join_auction').on('click', () => {
+    getCharasList()
+    $('#eden_tpc_list ul').html('')
+    loadTemperaryList(1)
+    joinAuctions(charasList)
+    closeDialog()
+  })
 
-  $( '#join_ico' ).on( 'click', () => {
-    get_charas_list();
-    postData( 'chara/list', charas_list ).then( ( d ) => {
-      autoJoinICO( d.Value );
-      loadTemperaryList( 1 );
-      closeDialog();
-    } );
-  } );
+  $('#join_ico').on('click', () => {
+    getCharasList()
+    postData('chara/list', charasList).then((d) => {
+      autoJoinICO(d.Value)
+      loadTemperaryList(1)
+      closeDialog()
+    })
+  })
 }

@@ -1,8 +1,7 @@
-import { getAutoTempleList } from "./storage/autoTempleList";
-import { autoBuildTemple } from "./autoBuildTemple";
+import { getAutoTempleList } from './storage/autoTempleList'
+import { autoBuildTemple } from './autoBuildTemple'
 
-export function autoTemple() {
-  let autoTempleList = getAutoTempleList();
-  if ( autoTempleList.length )
-    autoBuildTemple( autoTempleList );
+export function autoTemple () {
+  const autoTempleList = getAutoTempleList()
+  if (autoTempleList.length) { autoBuildTemple(autoTempleList) }
 }

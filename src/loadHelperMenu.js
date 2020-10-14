@@ -1,21 +1,21 @@
 import $ from 'jquery'
-import { menuItemClicked } from './menuItemClicked';
-import { openSettings } from './openSettings';
-import { cancelBids } from './cancelBids';
-import { sellOut } from './sellOut';
-import { loadFollowChara } from './loadFollowChara';
-import { loadMyICO } from './loadMyICO';
-import { loadMyTemple } from './loadMyTemple';
-import { loadScratch } from './loadScratch';
-import { loadMagic } from './loadMagic';
-import { creatTemporaryList } from './creatTemporaryList';
-import { loadFollowAuction } from './loadFollowAuction';
-import { loadBalance } from './loadBalance';
-import { loadAutoBuild } from './loadAutoBuild';
-import { loadAutoFillICO } from './loadAutoFillICO';
+import { menuItemClicked } from './menuItemClicked'
+import { openSettings } from './openSettings'
+import { cancelBids } from './cancelBids'
+import { sellOut } from './sellOut'
+import { loadFollowChara } from './loadFollowChara'
+import { loadMyICO } from './loadMyICO'
+import { loadMyTemple } from './loadMyTemple'
+import { loadScratch } from './loadScratch'
+import { loadMagic } from './loadMagic'
+import { creatTemporaryList } from './creatTemporaryList'
+import { loadFollowAuction } from './loadFollowAuction'
+import { loadBalance } from './loadBalance'
+import { loadAutoBuild } from './loadAutoBuild'
+import { loadAutoFillICO } from './loadAutoFillICO'
 
-export function loadHelperMenu() {
-  let item = `<li><a href="#" id="helperMenu" class="top">助手</a>
+export function loadHelperMenu () {
+  const item = `<li><a href="#" id="helperMenu" class="top">助手</a>
 <ul>
 <li><a href="#" id="temporaryList">临时列表</a></li>
 <li><a href="#" id="followChara">关注角色</a></li>
@@ -31,58 +31,58 @@ export function loadHelperMenu() {
 <li><a href="#" id="cancelBids">取消买单</a></li>
 <li><a href="#" id="settings">设置</a></li>
 </ul>
-</li>`;
-  $( '.timelineTabs' ).append( item );
+</li>`
+  $('.timelineTabs').append(item)
 
-  $( '#followChara' ).on( 'click', function() {
-    menuItemClicked( loadFollowChara );
-  } );
+  $('#followChara').on('click', function () {
+    menuItemClicked(loadFollowChara)
+  })
 
-  $( '#followAuction' ).on( 'click', function() {
-    menuItemClicked( loadFollowAuction );
-  } );
+  $('#followAuction').on('click', function () {
+    menuItemClicked(loadFollowAuction)
+  })
 
-  $( '#myICO' ).on( 'click', function() {
-    menuItemClicked( loadMyICO );
-  } );
+  $('#myICO').on('click', function () {
+    menuItemClicked(loadMyICO)
+  })
 
-  $( '#myTemple' ).on( 'click', function() {
-    menuItemClicked( loadMyTemple );
-  } );
+  $('#myTemple').on('click', function () {
+    menuItemClicked(loadMyTemple)
+  })
 
-  $( '#balance' ).on( 'click', function() {
-    menuItemClicked( loadBalance );
-  } );
+  $('#balance').on('click', function () {
+    menuItemClicked(loadBalance)
+  })
 
-  $( '#autoBuild' ).on( 'click', function() {
-    menuItemClicked( loadAutoBuild );
-  } );
+  $('#autoBuild').on('click', function () {
+    menuItemClicked(loadAutoBuild)
+  })
 
-  $( '#autoICO' ).on( 'click', function() {
-    menuItemClicked( loadAutoFillICO );
-  } );
+  $('#autoICO').on('click', function () {
+    menuItemClicked(loadAutoFillICO)
+  })
 
-  $( '#temporaryList' ).on( 'click', function() {
-    menuItemClicked( creatTemporaryList );
-  } );
+  $('#temporaryList').on('click', function () {
+    menuItemClicked(creatTemporaryList)
+  })
 
-  $( '#scratch' ).on( 'click', function() {
-    menuItemClicked( loadScratch );
-  } );
+  $('#scratch').on('click', function () {
+    menuItemClicked(loadScratch)
+  })
 
-  $( '#magic' ).on( 'click', function() {
-    menuItemClicked( loadMagic );
-  } );
+  $('#magic').on('click', function () {
+    menuItemClicked(loadMagic)
+  })
 
-  $( '#sell' ).on( 'click', function() {
-    menuItemClicked( sellOut );
-  } );
+  $('#sell').on('click', function () {
+    menuItemClicked(sellOut)
+  })
 
-  $( '#cancelBids' ).on( 'click', function() {
-    menuItemClicked( cancelBids );
-  } );
+  $('#cancelBids').on('click', function () {
+    menuItemClicked(cancelBids)
+  })
 
-  $( '#settings' ).on( 'click', function() {
-    menuItemClicked( openSettings );
-  } );
+  $('#settings').on('click', function () {
+    menuItemClicked(openSettings)
+  })
 }
