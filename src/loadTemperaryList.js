@@ -7,7 +7,7 @@ export function loadTemperaryList (page) {
   const ids = charasList.slice(start, start + 50)
   console.log(ids)
   const totalPages = Math.ceil(charasList.length / 50)
-  postData('chara/list', ids).then((d) => {
+  postData('chara/list', ids.map(x => +x)).then((d) => {
     if (d.State === 0) {
       loadCharacterList(d.Value, page, totalPages, loadTemperaryList, 'chara', false)
     }

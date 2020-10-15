@@ -48,7 +48,7 @@ export function loadMagic () {
         const Id = d.Value.Id
         const Amount = d.Value.Amount
         const SellPrice = d.Value.SellPrice
-        postData('chara/list', [Id]).then((d) => {
+        postData('chara/list', [Id].map(x => +x)).then((d) => {
           for (let i = 0; i < d.Value.length; i++) {
             d.Value[i].Sacrifices = Amount
             d.Value[i].Current = SellPrice
@@ -75,7 +75,7 @@ export function loadMagic () {
         const Id = d.Value.Id
         const Amount = d.Value.Amount
         const SellPrice = d.Value.SellPrice
-        postData('chara/list', [Id]).then((d) => {
+        postData('chara/list', [Id].map(x => +x)).then((d) => {
           for (let i = 0; i < d.Value.length; i++) {
             d.Value[i].Sacrifices = Amount
             d.Value[i].Current = SellPrice
@@ -97,7 +97,7 @@ export function loadMagic () {
         alert(d.Value)
         $('#eden_tpc_list ul').html('')
         $('#eden_tpc_list ul').append('<li class="line_odd item_list" style="text-align: center;">[星光碎片]</li>')
-        postData('chara/list', [supplyId, toSupplyId]).then((d) => {
+        postData('chara/list', [supplyId, toSupplyId].map(x => +x)).then((d) => {
           loadCharacterList(d.Value, 2, 2, loadScratch, 'chara', false)
         })
       } else { alert(d.Message) }

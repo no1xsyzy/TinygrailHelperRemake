@@ -11,7 +11,7 @@ export function loadAutoBuild (page) {
   const start = 50 * (page - 1)
   const ids = charas.slice(start, start + 50)
   const totalPages = Math.ceil(charas.length / 50)
-  postData('chara/list', ids).then((d) => {
+  postData('chara/list', ids.map(x => +x)).then((d) => {
     if (d.State === 0) {
       loadCharacterList(d.Value, page, totalPages, loadAutoBuild, 'chara', false)
     }

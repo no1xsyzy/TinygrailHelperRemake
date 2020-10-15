@@ -91,7 +91,7 @@ export function creatTemporaryList (page) {
 
   $('#join_ico').on('click', () => {
     getCharasList()
-    postData('chara/list', charasList).then((d) => {
+    postData('chara/list', charasList.map(x => +x)).then((d) => {
       autoJoinICO(d.Value)
       loadTemperaryList(1)
       closeDialog()

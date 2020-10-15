@@ -26,7 +26,7 @@ export function loadScratch () {
         }
         scratch()
       } else {
-        postData('chara/list', scratchIds).then((d) => {
+        postData('chara/list', scratchIds.map(x => +x)).then((d) => {
           for (let i = 0; i < d.Value.length; i++) {
             d.Value[i].Sacrifices = scratchResults[i].Amount
             d.Value[i].Current = scratchResults[i].SellPrice
@@ -59,7 +59,7 @@ export function loadScratch () {
             alert(d.Message)
             chaosCube()
           } else {
-            postData('chara/list', chaosCubeIds).then((d) => {
+            postData('chara/list', chaosCubeIds.map(x => +x)).then((d) => {
               for (let i = 0; i < d.Value.length; i++) {
                 d.Value[i].Sacrifices = chaosCubeResults[i].Amount
                 d.Value[i].Current = chaosCubeResults[i].SellPrice

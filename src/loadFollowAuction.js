@@ -9,7 +9,7 @@ export function loadFollowAuction (page) {
   const start = 20 * (page - 1)
   const ids = followList.auctions.slice(start, start + 20)
   const totalPages = Math.ceil(followList.auctions.length / 20)
-  postData('chara/list', ids).then((d) => {
+  postData('chara/list', ids.map(x => +x)).then((d) => {
     if (d.State === 0) {
       loadCharacterList(d.Value, page, totalPages, loadFollowAuction, 'auction', true)
       postData('chara/auction/list', ids).then((d) => {
