@@ -38,7 +38,7 @@ export function loadBalance () {
   $('#TB_closeWindowButton').on('click', closeDialog)
   $('#TB_overlay').on('click', closeDialog)
   $('#submit_search').on('click', () => {
-    const Type = $('#balanceType').val()
+    const Type = +$('#balanceType').val()
     const page = $('#page').val()
     const amount = $('#amount').val()
     const Logs = []
